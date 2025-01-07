@@ -1,0 +1,5 @@
+{% load widget_tweaks %}
+<span class="w-[15%]" id="serial">
+    <label class="label flex justify-end" for="{{ idform.serial_no.id_for_label }}">سیریل نمبر </label>
+    {% render_field idform.serial_no class="input w-full bg-cyan-100 text-gray-900 border-gray-300"%}
+</span>

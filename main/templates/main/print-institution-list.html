@@ -1,0 +1,145 @@
+{% extends '../printLayout.html' %}
+{% load static %}
+{% block content %}
+
+ <section class=" bg-gray-50 w-full">
+    <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-start">{{filter_records}} : کل ادارے</h2>
+        <h2 class="text-2xl font-bold text-center">{{year.english}} | {{year.hijri}} : سال</h2>
+        <h2 class="text-2xl font-bold text-center">{{donation_day}} : رمضان کا دن</h2>
+        <h2 class="text-2xl font-bold text-right">مسجد عمر</h2>
+    </div>
+    <div class="overflow-x-auto">
+      {% for ins in institutions %} 
+      <table class="table-auto w-full border-collapse border border-gray-800 mt-3" cellpadding="5" cellspacing="0">
+        <tbody class="">
+        <tr>
+          <td rowspan="4">
+            {% if ins.safir_photo%}
+            <img src="{{ ins.safir_photo.url }} " class="img-thumbnail w-[100px]" alt="..." >
+            {%else%}
+            <img src="{% static '/nophoto.jpg' %} " class="img-thumbnail w-[100px]" alt="..." >
+            {% endif %}
+          </td>
+          <td>
+            <span class="text-xl font-bold">UID:{{ins.institution_id}}</span>
+          </td>
+          <td>
+            <span class="text-xl text-right">
+              {{ins.institution.full_adddres}}
+            </span>
+            
+          </td>
+          <td>
+            <span class="text-xl font-bold text-right">
+              {{ins.institution.name}}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="text-xl">رمضان کا دن:{{ins.donation_day}}</span></td>
+          <td><span class="text-xl">ہلکہ:{{ins.halka_code}}</span></td>
+          <td><span class="text-xl">کل طلباء:{{ins.total_students}}</span></td
+        </tr>
+        <tr>
+          <td><span class="text-xl text-right"> سفیر : {{ins.safir_name}} - {{ins.safir_phone}}</span></td>
+          <td><span class="text-xl text-right">موہتمیم: {{ins.moh_name}} - {{ins.moh_phone}}</span></td>
+          <td><span class="text-xl">طعام و قیام طلباء:{{ins.res_students}}</span></td>
+        </tr>
+        <tr>
+          <td class="flex justify-between items-center px-3">
+            <span class="text-xl">تعلیم:{{ins.taalim}}</span>
+            <span class="text-xl">اگلا رمضان:{{ins.next_donation_year}}</span>
+
+            </td>
+          <td><span class="text-xl">سفیر کا آدھار:{{ins.safir_aadhar}} </span></td>
+          <td> 
+            <span class="text-xl">
+            کل اساتذہ :{{ins.total_teachers}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      {% endfor %}
+    </div>
+    <!-- {% for ins in institutions %}
+    <div class="card shadow-sm border border-gray-300 mt-3">
+      <div class="card-body">
+      <div class="flex">
+      <div class="w-[15%]">
+      {% if ins.safir_photo %}
+      <img src="{{ ins.safir_photo.url }}" class="img-thumbnail w-full" alt="...">
+      {% else %}
+      <img src="{% static '/nophoto.jpg' %}" class="img-thumbnail w-full" alt="...">
+      {% endif %}
+      </div>
+      <div class="w-[85%] pl-3">
+      <div class="grid grid-cols-3 gap-4 text-right border-b border-gray-300 pb-2">
+        <div>
+        <h3 class="text-sm font-bold">UID:</h3>
+        <p class="text-md">{{ ins.institution_id }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">پتہ:</h3>
+        <p class="text-md">{{ ins.institution.full_adddres }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">نام:</h3>
+        <p class="text-md">{{ ins.institution.name }}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-5 gap-4 text-right mt-3 border-b border-gray-300 pb-2">
+        <div>
+        <h3 class="text-sm font-bold">رمضان کا دن:</h3>
+        <p class="text-md">{{ ins.donation_day }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">ہلکہ:</h3>
+        <p class="text-md">{{ ins.halka_code }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">کل طلباء:</h3>
+        <p class="text-md">{{ ins.total_students }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">سفیر:</h3>
+        <p class="text-md">{{ ins.safir_name }} - {{ ins.safir_phone }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">موہتمیم:</h3>
+        <p class="text-md">{{ ins.moh_name }} - {{ ins.moh_phone }}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-5 gap-4 text-right mt-3 border-b border-gray-300 pb-2">
+        <div>
+        <h3 class="text-sm font-bold">طعام و قیام طلباء:</h3>
+        <p class="text-md">{{ ins.res_students }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">تعلیم:</h3>
+        <p class="text-md">{{ ins.taalim }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">اگلا رمضان:</h3>
+        <p class="text-md">{{ ins.next_donation_year }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">سفیر کا آدھار:</h3>
+        <p class="text-md">{{ ins.safir_aadhar }}</p>
+        </div>
+        <div>
+        <h3 class="text-sm font-bold">کل اساتذہ:</h3>
+        <p class="text-md">{{ ins.total_teachers }}</p>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    {%endfor%} -->
+  </section>
+    
+   
+{% endblock %}

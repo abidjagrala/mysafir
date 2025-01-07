@@ -1,0 +1,95 @@
+{% load static %}
+{% load widget_tweaks %}
+
+
+<div class="card bg-base-100 w-full shadow-xl mt-6">
+            
+    <div class="card-body text-right mb-5 border-b border-gray-300"> 
+      <h2 class="text-2xl font-bold">سال</h2>
+    </div>
+    
+    <form hx-post="{% url 'add-year' %}">
+      <div class="flex justify-between items-end p-5 gap-3">
+        <div class="flex justify-end items-center gap-3">
+         
+          <button class="btn btn-info mt-4 ">
+              شامل کریں۔
+          </button>
+        </div>
+        <span class="w-[30%] text-right">
+          <label class="label flex justify-end" for="{{ iform.name.id_for_label }}">کیا موجودہ سال ہے؟ </label>
+          {% render_field yearform.is_current_year class="checkbox bg-gray-50 text-gray-900 border-gray-300 " %}      
+        </span>
+        <span class="w-[30%]">
+          <label class="label flex justify-end" for="{{ iform.name.id_for_label }}">انگریزی سال </label>
+          {% render_field yearform.english class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+          
+        </span>
+        <span class="w-[30%]">
+          <label class="label flex justify-end" for="{{ iform.name.id_for_label }}">ہجری سال </label>
+          {% render_field yearform.hijri class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}      
+        </span>
+      </div>
+    </form>
+    
+    <div class="overflow-x-auto p-5">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>انگریزی سال</th>
+            <th>ہجری سال</th>
+            <th>موجودہ سال</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+        {% if years%}
+        {% for year in years %}
+          <tr>
+            <td>{{year.english}}</td>
+            <td>{{year.hijri}}</td>
+            <td>
+              {% if year.is_current_year %}
+              <div class="text-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+                
+              </div>
+              {% else %}
+              <div class="text-red-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              </div>
+              
+              {% endif %}
+              
+            </td>
+            <td> 
+                <div class="flex justify-center items-center gap-4">
+                  <a hx-get="{% url 'edit-year' year.pk %}"
+                    hx-push-url="true"
+                    hx-target="#yearblock"
+                    class="btn btn-warning text-white font-sans">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                      </svg>    
+                </a>
+               
+
+                </div>
+            </td>
+          </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+

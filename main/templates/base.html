@@ -1,0 +1,30 @@
+{% load static tailwind_tags %}
+<script src="{% static 'htmx.min.js' %}" defer></script>
+<!DOCTYPE html>
+<html lang="en"  data-theme="light" id="main">
+	<head>
+    <title>SAFIR V2.0</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous"></script> -->
+		<script>
+			document.addEventListener('htmx:afterSwap', function(evt) {
+				 history.replaceState(null, null, window.location.pathname); // Remove the #target
+			  });
+		  </script>
+		{% tailwind_css %}
+	</head>
+	<style>
+		
+	</style>
+	<body  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' class="bg-gray-100 font-noto leading-normal tracking-normal h-[100vh]">
+        {% include './header.html'%}
+		<div class="flex justify-center w-[100%]">
+			{% block content %}
+
+            {% endblock %}
+		</div>
+	
+	</body>
+</html>

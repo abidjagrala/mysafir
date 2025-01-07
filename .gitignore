@@ -1,0 +1,109 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dll
+
+# Environments
+.env
+venv/
+env/
+.venv/
+*/.venv/
+*.egg-info
+
+# Django specific
+*.log
+*.sqlite3
+*.db
+*.sqlite3-shm
+*.sqlite3-wal
+media/*
+!media/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
+._*
+
+# IDE/Editor files
+*.idea
+*.vscode
+*.sublime-project
+*.sublime-workspace
+*.tmproj
+*.bak
+*.swp
+*.swo
+*.iml
+.project
+.settings/
+.metadata
+*.ipr
+*.iws
+
+# OS generated files
+ehthumbs.db
+Icon\r
+[Tt]humbs.db
+*.orig
+*.py~
+~$*
+
+# Log Files
+*.log
+debug.log
+
+# Cache Files
+*.cache
+.cache
+.sass-cache/
+
+# Static files not meant to be in git
+static/*
+!static/.gitkeep
+
+# Uploads
+uploads/
+
+# Local Settings
+local_settings.py
+
+# Deployment related
+*.env
+*.wsgi
+*.fcgi
+*.ini
+
+# Compiled CSS
+*.css.map
+*.min.css
+
+# HTMX related: if you generate HTMX-related files. Add if you need to exclude.
+# *.htmx
+
+# Node modules (if used for frontend)
+node_modules/
+package-lock.json
+
+# Python dependency files
+pip-log.txt
+*.egg
+*.whl
+build/
+dist/
+
+# Other
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Secret keys
+secret.txt
+secret_key.txt
+*.key
+
+# OS Files
+.localized

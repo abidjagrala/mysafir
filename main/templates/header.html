@@ -1,0 +1,29 @@
+<div class="navbar bg-white">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">SAFIR V2.0</a>
+      
+      
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="badge badge-neutral mx-10 text-lg font-bold p-4">{{current_year.english}} / {{current_year.hijri}} :موجودہ سال</div>
+      <ul class="menu menu-horizontal px-1 mx-20">
+       
+        <li><a href="{% url 'institution-settings' %}">ترتیبات</a></li>
+        <li> <a href="{% url 'institution-list' %}">ادارے تلاش کریں۔</a></li>
+        
+        <li>
+          <details>
+            <summary>اداریے</summary>
+            <ul class="bg-white rounded-t-none p-2 ">
+              <li class="w-[200px] border-b-2"><a href="{% url 'institution-list' %}">ادارے تلاش کریں۔</a></li>
+              
+              <li><a>
+                اداریے
+                </a>
+            </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>

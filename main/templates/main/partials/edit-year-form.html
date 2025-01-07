@@ -1,0 +1,26 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<span class="w-full" id="yearfield">
+   
+    <form hx-post="{% url 'edit-year' year_id %}">
+        <!-- if there is a button in form, it will close the modal -->
+      <div >
+        <h3 class="text-lg font-bold justify-end">سال میں ترمیم کریں۔</h3>
+          <input type="hidden" name="state_id" value="{{ state_id }}">
+          <label class="label flex justify-end" for="{{ stateform.name.id_for_label }}">انگریزی سال </label>
+          {% render_field yearform.english class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+          <label class="label flex justify-end" for="{{ stateform.name.id_for_label }}">ہجری سال </label>
+          {% render_field yearform.hijri class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+          <label class="label flex justify-end" for="{{ stateform.name.id_for_label }}">کیا موجودہ سال ہے؟ </label>
+          {% render_field yearform.is_current_year class="checkbox   bg-gray-50 text-gray-900 border-gray-300 " %}
+          
+      </div>
+        
+        <button class="btn btn-warning mt-3 mr-3">Submit</button>
+      
+      <a class="btn btn-error mt-3" href="{% url 'institution-settings' %}">Cancel</a>
+        
+      </form>
+      
+</span>

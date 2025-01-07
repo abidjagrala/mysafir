@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+
+ <section class="my-10 bg-gray-50 w-[95%] p-3 rounded-md h-full ">
+      
+    <div id="institution-block"> 
+      
+      <!-- End Page Title -->
+      {% include 'main/partials/institution-container.html' %}
+    </div>
+     <!-- end institution  container -->
+  </section>
+
+{% endblock %}

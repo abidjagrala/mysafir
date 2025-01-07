@@ -1,0 +1,116 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="mb-2 form-control flex flex-row justify-end items-center gap-2">
+    <span class="w-[10%]">
+       
+       <span class="flex flex-row justify-end text-md py-4 border-b-2">پن کوڈ</span> 
+       <span class="flex flex-row justify-end text-xl">{{institution.pincode}}</span>
+    </span>
+    <span  class="w-[15%]">
+       <span class="flex flex-row justify-end text-md py-4 border-b-2">ریاست</span> 
+       <span class="flex flex-row justify-end text-xl">{{institution.state}}</span>
+   </span>
+    <span  class="w-[40%]">
+       <span class="flex flex-row justify-end text-md py-4 border-b-2">پتہ</span> 
+       <span class="flex flex-row justify-end text-xl">{{institution.address}}</span>
+   </span>
+    <div  class="w-[25%]">
+       <span class="flex flex-row justify-end text-md py-4 border-b-2">نام</span> 
+       <span class="flex flex-row justify-end text-xl">{{institution.name}}</span><br>
+       
+    </div>  
+  
+</div>
+
+<form hx-post="{% url 'add-next-year-details' institution.id %}" enctype="multipart/form-data">
+
+<div class="bg-gray-200 p-5 rounded-md mt-5">
+    <div class="mb-2 form-control flex flex-row justify-between items-center gap-2">  
+        <span class="w-[100%] ">
+            <input type="hidden" name="institution_id" value="{{idetail.institution_id}}">
+            <label class="label justify-end" for="{{ idform.year.id_for_label }}">سال </label>
+            {% render_field idform.year class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+            
+        </span> 
+    </div>
+    <div class="mb-2 form-control flex flex-row justify-end items-center gap-2">
+        <span class="w-[20%]">
+            <label class="label flex justify-end" for="{{ idform.safir_aadhar.id_for_label }}">سفیر کا آدھار </label>
+            {% render_field idform.safir_aadhar class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[10%]">
+            <label class="label flex justify-end" for="{{ idform.safir_phone.id_for_label }}">سفیر کا فون </label>
+            {% render_field idform.safir_phone class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[30%]">
+            <label class="label flex justify-end" for="{{ idform.safir_name.id_for_label }}">سفیر کا نام </label>
+            {% render_field idform.safir_name class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[10%]">
+            <label class="label flex justify-end" for="{{ idform.moh_phone.id_for_label }}">موہتمیم کا فون </label>
+            {% render_field idform.moh_phone class="input w-full bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[30%]">
+            <label class="label flex justify-end" for="{{ idform.moh_name.id_for_label }}">موہتمیم کا نام </label>
+            {% render_field idform.moh_name class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+    </div>
+    <div class="mb-2 form-control flex flex-row justify-end items-center gap-2">
+        {% include 'main/partials/serial-number.html' %}
+        <span class="w-[15%]">
+                <label class="label flex justify-end" for="{{ idform.donation_day.id_for_label }}">رمضان کا دن </label>
+                {% render_field idform.donation_day class="input w-full bg-gray-50 text-gray-900 border-gray-300" hx-post="/max-serial/" hx-trigger="keyup" hx-target="#serial" hx-swap="outerhtml" %}
+        </span>
+        <span class="w-[15%]">
+            <label class="label flex justify-end" for="{{ idform.total_teachers.id_for_label }}">کل اساتذہ </label>
+            {% render_field idform.total_teachers class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[15%]">
+            <label class="label flex justify-end" for="{{ idform.res_students.id_for_label }}">طعام و قیام طلباء </label>
+            {% render_field idform.res_students class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+          
+        </span>
+        <span class="w-[15%]">
+            <label class="label flex justify-end" for="{{ idform.total_students.id_for_label }}">کل طلباء </label>
+            {% render_field idform.total_students class="input w-full bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[25%]">
+            <label class="label flex justify-end" for="{{ idform.taalim.id_for_label }}">تعلیم </label>
+            {% render_field idform.taalim class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+    </div>
+    <div class="mb-2 form-control flex flex-row justify-end items-center gap-2">
+        <span class="w-[25%]">
+            <label class="label flex justify-end" for="{{ idform.safir_photo.id_for_label }}">سفیر کی تصویر </label>
+            {% render_field idform.safir_photo class="file-input file-input-bordered w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[40%]">
+            <label class="label flex justify-end" for="{{ idform.comments.id_for_label }}">تفصیل </label>
+            {% render_field idform.comments class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[15%]">
+            <label class="label flex justify-end" for="{{ idform.next_donation_year.id_for_label }}">اگلا رمضان </label>
+            {% render_field idform.next_donation_year class="select bg-gray-50 text-gray-900 border-gray-300 w-[100%]" %}
+        </span>
+        <span class="w-[10%]">
+            <label class="label flex justify-end" for="{{ idform.ijazat_status.id_for_label }}">اجازت </label>
+            {% render_field idform.ijazat_status class="input w-full bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+        <span class="w-[10%]">
+            <label class="label flex justify-end" for="{{ idform.halka_code.id_for_label }}">ہلکہ </label>
+            {% render_field idform.halka_code class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+        </span>
+    </div>
+    <div class="flex justify-between items-center ">
+        <button class="btn btn-error mt-4"
+        hx-get="{% url 'institution-list' %}"
+        hx-target="#institution-block">
+        منسوخ کریں
+      </button>
+        <button class="btn btn-warning mt-4 ">
+            ادارے کی تفصیلات شامل کریں۔
+        </button>
+        
+        </div>
+</form>

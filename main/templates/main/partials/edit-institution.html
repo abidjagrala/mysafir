@@ -1,0 +1,35 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<div id="create-form-container text-red-900">
+    <div class="flex justify-between items-center ">
+        <h2 class="card-title justify-end ">UID: {{idetail.institution_id}}</h2>
+       
+        <div class="flex justify-end items-center gap-3">
+            <h1 class="text-3xl text-green-900">  ادارہ میں ترمیم کریں۔</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 mt-3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+            </svg> 
+        </div>
+    </div>
+  
+    
+    <form hx-post="{% url 'edit-institution' idetail.id %}" enctype="multipart/form-data">
+        
+        {% include 'main/partials/ins-detail-form.html' %}   
+    
+      
+        <div class="flex justify-between items-center ">
+        <button class="btn btn-error mt-4"
+        hx-get="{% url 'institution-list' %}"
+        hx-target="#institution-block">
+        منسوخ کریں
+      </button>
+        <button class="btn btn-warning mt-4 ">
+            ترمیم کریں۔
+        </button>
+        
+        </div>
+    </form>
+    
+</div>

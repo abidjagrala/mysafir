@@ -1,0 +1,22 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<span class="w-full" id="statefield">
+   
+    <form hx-post="{% url 'edit-state' state_id %}">
+        <!-- if there is a button in form, it will close the modal -->
+      <div >
+        <h3 class="text-lg font-bold justify-end">ریاست میں ترمیم کریں۔</h3>
+          <input type="hidden" name="state_id" value="{{ state_id }}">
+          <label class="label flex justify-end" for="{{ stateform.name.id_for_label }}">ریاست </label>
+          {% render_field stateform.name class="input w-full  bg-gray-50 text-gray-900 border-gray-300 " %}
+          
+      </div>
+        
+        <button class="btn btn-warning mt-3 mr-3">Submit</button>
+     
+      <a class="btn btn-error mt-3" href="{% url 'institution-settings' %}">Cancel</a>
+        
+      </form>
+      
+</span>
